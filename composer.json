@@ -1,0 +1,80 @@
+{
+    "name": "bbs-lab/laravel-force-two-factor",
+    "description": "Admin-panel-agnostic core for forcing two-factor authentication in any Laravel app: a shared bypass registry (compose several \"skip 2FA\" reasons) that the nova-force-two-factor and filament-force-two-factor adapters enforce.",
+    "keywords": [
+        "BBS",
+        "laravel",
+        "two-factor",
+        "2fa",
+        "mfa",
+        "authentication",
+        "security"
+    ],
+    "homepage": "https://github.com/BBS-Lab/laravel-force-two-factor",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "BBS",
+            "email": "paris@big-boss-studio.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/contracts": "^11.0 || ^12.0 || ^13.0",
+        "illuminate/http": "^11.0 || ^12.0 || ^13.0",
+        "illuminate/support": "^11.0 || ^12.0 || ^13.0",
+        "spatie/laravel-package-tools": "^1.16"
+    },
+    "require-dev": {
+        "larastan/larastan": "^3.0",
+        "laravel/pint": "^1.18",
+        "nunomaduro/collision": "^8.0",
+        "orchestra/testbench": "^9.0 || ^10.0 || ^11.0",
+        "pestphp/pest": "^4.0",
+        "pestphp/pest-plugin-arch": "^4.0",
+        "pestphp/pest-plugin-laravel": "^4.0",
+        "pestphp/pest-plugin-mutate": "^4.0",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan-deprecation-rules": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "BBSLab\\LaravelForceTwoFactor\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BBSLab\\LaravelForceTwoFactor\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "BBSLab\\LaravelForceTwoFactor\\LaravelForceTwoFactorServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@php vendor/bin/testbench package:discover --ansi",
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "XDEBUG_MODE=coverage vendor/bin/pest --coverage --min=100",
+        "test-mutation": "XDEBUG_MODE=coverage vendor/bin/pest --mutate --everything --covered-only --min=80",
+        "format": "vendor/bin/pint",
+        "lint": [
+            "@php vendor/bin/pint --ansi",
+            "@php vendor/bin/phpstan analyse --verbose --ansi"
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
